@@ -1,25 +1,3 @@
-/**
- * ══════════════════════════════════════════════════
- * PORTAFOLIO GIORGOS — script.js
- *
- * IMÁGENES:
- *   1. Crea la carpeta /imagenes/ en tu repo de GitHub.
- *   2. Sube tus fotos ahí.
- *   3. Edita el array IMAGES con los nombres de tus archivos.
- *
- * VIDEOS:
- *   1. En YouTube Studio → tu video → Editar → Más opciones
- *      → activa "Permitir embebido" ✓
- *   2. Copia el ID del video (lo que va después de ?v= en la URL).
- *   3. Agrégalo al array YOUTUBE_VIDEOS.
- *   ⚠️ Error 150/153 = embebido bloqueado por el dueño del video.
- * ══════════════════════════════════════════════════
- */
-
-/* ══════════════════════════════════════════════════
-   🖼️  TUS IMÁGENES
-   Sube las fotos a /imagenes/ y ponles el nombre aquí.
-══════════════════════════════════════════════════ */
 const IMAGES = [
   { file: 'big.png', title: 'Big Mind',    subtitle: 'Rediseño'     },
   { file: 'portada.jpg', title: 'Fortnite x Southpark',         subtitle: 'Parcial'        },
@@ -43,18 +21,13 @@ const FALLBACK_COLORS = [
   'linear-gradient(135deg,#fd7043,#ff8a65)',
 ];
 
-/* ══════════════════════════════════════════════════
-   🎬  TUS VIDEOS DE YOUTUBE
-   Reemplaza los id por los IDs de tus propios videos.
-══════════════════════════════════════════════════ */
+
 const YOUTUBE_VIDEOS = [
   { id: 'j4u0800M__k', title: 'Suhi Video Clip',       channel: 'KURE' },
   // { id: 'TU_ID_AQUI', title: 'Nombre', channel: 'Proyecto' },
 ];
 
-/* ══════════════════════════════════════════════════
-   ESTADO Y HELPERS
-══════════════════════════════════════════════════ */
+
 const state = {
   windows: {},
   topZ:    100,
@@ -63,9 +36,6 @@ const state = {
 const $  = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-/* ══════════════════════════════════════════════════
-   RELOJ DINÁMICO
-══════════════════════════════════════════════════ */
 function updateClocks() {
   const now   = new Date();
   const hh    = String(now.getHours()).padStart(2, '0');
@@ -91,9 +61,6 @@ function updateClocks() {
 updateClocks();
 setInterval(updateClocks, 1000);
 
-/* ══════════════════════════════════════════════════
-   LOGIN
-══════════════════════════════════════════════════ */
 const PASS = 'gio2024';
 
 function handleLogin() {
@@ -119,13 +86,10 @@ $('#login-pass').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleLogin();
 });
 
-/* ══════════════════════════════════════════════════
-   ESCRITORIO
-══════════════════════════════════════════════════ */
 function showDesktop() {
   $('#desktop').classList.remove('hidden');
 
-  // Registrar todas las ventanas
+
   $$('.window').forEach(win => {
     state.windows[win.id] = { minimized: false, maximized: false, prevBounds: null };
   });
@@ -133,7 +97,7 @@ function showDesktop() {
   buildImageList();
   buildVideoList();
 
-  // Animación entrada de iconos
+
   $$('.desk-icon').forEach((icon, i) => {
     icon.style.opacity   = '0';
     icon.style.transform = 'translateY(20px)';
@@ -147,14 +111,11 @@ function showDesktop() {
   showToast('¡Bienvenido, Giorgos! 👋');
 }
 
-/* ══════════════════════════════════════════════════
-   IMÁGENES — lista izquierda + visor derecho
-══════════════════════════════════════════════════ */
+
 function buildImageList() {
   const list = $('#image-list');
   if (!list) return;
 
-  // Quitar ítems previos (mantener el título)
   $$('.side-item', list).forEach(el => el.remove());
 
   if (IMAGES.length === 0) {
@@ -197,16 +158,13 @@ function selectImage(idx) {
   const img = IMAGES[idx];
   if (!img) return;
 
-  // Marcar activo
   $$('.side-item', $('#image-list')).forEach((el, i) =>
     el.classList.toggle('active', i === idx)
   );
 
-  // Actualizar título
   const titleEl = $('#img-title');
   if (titleEl) titleEl.textContent = `${img.title} — ${img.subtitle}`;
 
-  // Mostrar imagen en el visor
   const screen   = $('#image-screen');
   if (!screen) return;
   const fallback = FALLBACK_COLORS[idx % FALLBACK_COLORS.length];
@@ -223,7 +181,7 @@ function selectImage(idx) {
     imgEl.classList.add('loaded');
   };
   imgEl.onerror = () => {
-    // Mantiene el color de respaldo y agrega etiqueta
+
     screen.style.background = fallback;
   };
 
@@ -231,9 +189,6 @@ function selectImage(idx) {
   screen.appendChild(imgEl);
 }
 
-/* ══════════════════════════════════════════════════
-   VIDEOS — lista izquierda + reproductor YouTube
-══════════════════════════════════════════════════ */
 function buildVideoList() {
   const list = $('#video-list');
   if (!list) return;
@@ -278,7 +233,6 @@ function selectVideo(idx) {
   const vid = YOUTUBE_VIDEOS[idx];
   if (!vid) return;
 
-  // Marcar activo
   $$('.side-item', $('#video-list')).forEach((el, i) =>
     el.classList.toggle('active', i === idx)
   );
@@ -302,9 +256,6 @@ function selectVideo(idx) {
   screen.appendChild(iframe);
 }
 
-/* ══════════════════════════════════════════════════
-   VENTANAS — abrir, cerrar, minimizar, maximizar
-══════════════════════════════════════════════════ */
 function openWindow(id) {
   const win = $(`#${id}`);
   if (!win) return;
@@ -345,7 +296,6 @@ function closeWindow(id) {
   const win = $(`#${id}`);
   if (!win) return;
 
-  // Detener video al cerrar
   if (id === 'win-videos') {
     const screen = $('#video-screen');
     if (screen) screen.innerHTML = '';
@@ -387,7 +337,6 @@ function toggleMaximize(id) {
   }
 }
 
-/* Delegación controles de ventana */
 document.addEventListener('click', e => {
   const btn = e.target.closest('[data-action]');
   if (!btn) return;
@@ -398,9 +347,6 @@ document.addEventListener('click', e => {
   e.stopPropagation();
 });
 
-/* ══════════════════════════════════════════════════
-   ICONOS DEL ESCRITORIO — 1 CLIC
-══════════════════════════════════════════════════ */
 document.addEventListener('click', e => {
   const icon = e.target.closest('.desk-icon');
   if (!icon) return;
@@ -417,9 +363,6 @@ document.addEventListener('mousedown', e => {
   }
 });
 
-/* ══════════════════════════════════════════════════
-   TASKBAR
-══════════════════════════════════════════════════ */
 $$('.taskbar-app-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const id  = btn.dataset.window;
@@ -447,9 +390,6 @@ function updateTaskbarBtn(winId) {
   }
 }
 
-/* ══════════════════════════════════════════════════
-   MENÚ INICIO
-══════════════════════════════════════════════════ */
 const startMenu = $('#start-menu');
 const startBtn  = $('#taskbar-start');
 
@@ -490,9 +430,6 @@ $('#start-logout').addEventListener('click', () => {
   }, 350);
 });
 
-/* ══════════════════════════════════════════════════
-   DRAG — ventanas arrastrables
-══════════════════════════════════════════════════ */
 let drag = null;
 
 document.addEventListener('mousedown', e => {
@@ -519,16 +456,10 @@ document.addEventListener('mousemove', e => {
 
 document.addEventListener('mouseup', () => { drag = null; });
 
-/* ══════════════════════════════════════════════════
-   SOBRE MÍ — animar barras al abrir
-══════════════════════════════════════════════════ */
 function animateSkillBars() {
   $$('.skill-fill').forEach(f => f.classList.add('animated'));
 }
 
-/* ══════════════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════════════ */
 let toastTimer = null;
 
 function showToast(msg, ms = 2800) {
@@ -539,7 +470,6 @@ function showToast(msg, ms = 2800) {
   toastTimer = setTimeout(() => t.classList.remove('show'), ms);
 }
 
-/* ESC cierra menú inicio */
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !startMenu.classList.contains('hidden')) {
     startMenu.classList.add('hidden');
