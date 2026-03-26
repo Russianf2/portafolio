@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- ════════ LOGIN ════════ -->
   <div id="login-screen">
     <div class="login-bg-blur"></div>
     <div class="login-card">
@@ -37,10 +36,8 @@
     </div>
   </div>
 
-  <!-- ════════ ESCRITORIO ════════ -->
   <div id="desktop" class="hidden">
 
-    <!-- Iconos — 1 clic para abrir -->
     <div class="desktop-icons">
 
       <div class="desk-icon" data-window="win-images">
@@ -88,7 +85,6 @@
 
     </div>
 
-    <!-- ══ VENTANA: IMÁGENES — lista izquierda + visor derecho ══ -->
     <div class="window hidden" id="win-images" style="top:60px;left:90px;width:800px;height:510px;">
       <div class="win-titlebar" data-window="win-images">
         <div class="win-title"><span class="win-title-icon">🖼️</span><span>Imágenes — Galería</span></div>
@@ -99,11 +95,11 @@
         </div>
       </div>
       <div class="win-body side-layout">
-        <!-- Lista izquierda -->
+
         <div class="side-list" id="image-list">
           <h3 class="side-list-title">Proyectos</h3>
         </div>
-        <!-- Visor derecho -->
+
         <div class="side-player">
           <div class="side-screen" id="image-screen">
             <div class="side-placeholder">
@@ -118,7 +114,6 @@
       </div>
     </div>
 
-    <!-- ══ VENTANA: VIDEOS ══ -->
     <div class="window hidden" id="win-videos" style="top:80px;left:110px;width:800px;height:510px;">
       <div class="win-titlebar" data-window="win-videos">
         <div class="win-title"><span class="win-title-icon">🎬</span><span>Videos — Reproductor</span></div>
@@ -146,7 +141,6 @@
       </div>
     </div>
 
-    <!-- ══ VENTANA: SOBRE MÍ ══ -->
     <div class="window hidden" id="win-about" style="top:100px;left:200px;width:550px;height:400px;">
       <div class="win-titlebar" data-window="win-about">
         <div class="win-title"><span class="win-title-icon">👤</span><span>Sobre Mí</span></div>
@@ -212,7 +206,6 @@
       </div>
     </div>
 
-    <!-- ══ VENTANA: CONTACTO ══ -->
     <div class="window hidden" id="win-contact" style="top:120px;left:250px;width:420px;height:290px;">
       <div class="win-titlebar" data-window="win-contact">
         <div class="win-title"><span class="win-title-icon">✉️</span><span>Contacto</span></div>
@@ -252,7 +245,6 @@
       </div>
     </div>
 
-    <!-- TASKBAR -->
     <div id="taskbar">
       <button class="taskbar-start" id="taskbar-start" title="Inicio">
         <svg viewBox="0 0 16 16" fill="none" width="20">
@@ -286,7 +278,6 @@
       </div>
     </div>
 
-    <!-- Menú inicio -->
     <div class="start-menu hidden" id="start-menu">
       <div class="start-header"><span class="start-greeting">Portafolio de Giorgos</span></div>
       <div class="start-apps">
@@ -300,7 +291,7 @@
       </div>
     </div>
 
-  </div><!-- /desktop -->
+  </div>
 
   <div class="toast" id="toast"></div>
   <script src="script.js"></script>
