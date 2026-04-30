@@ -4,6 +4,7 @@ const IMAGES = [
   { file: 'portada.png', title: 'Portada Cancion',        subtitle: 'Trabajo'    },
   { file: 'SUHI.png', title: 'SUHI',          subtitle: 'Portada de video clip'    },
   { file: 'SUPLICAZZ.png', title: 'SUPLICAZZ',          subtitle: 'Portada de video clip'    },
+  { file: 'Soundly.png', title: 'Soundly',          subtitle: 'Landing Page'    },
 ];
 
 const IMAGES_FOLDER = 'imagenes/';
