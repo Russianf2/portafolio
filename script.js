@@ -109,7 +109,7 @@ function showDesktop() {
     }, 100 + i * 80);
   });
 
-  showToast('¡Bienvenido, Giorgos! 👋');
+  showToast('¡Bienvenido! 👋');
 }
 
 
