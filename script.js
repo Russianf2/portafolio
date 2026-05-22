@@ -25,6 +25,7 @@ const FALLBACK_COLORS = [
 
 const YOUTUBE_VIDEOS = [
   { id: 'j4u0800M__k', title: 'Suhi Video Clip',       channel: 'KURE' },
+  { id: 'u0yfxH1P08w', title: 'N.O.V.A VHS', channel: 'GIO 444' },
   // { id: 'TU_ID_AQUI', title: 'Nombre', channel: 'Proyecto' },
 ];
 
